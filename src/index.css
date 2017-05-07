@@ -4,7 +4,8 @@ body {
   font-family: sans-serif;
 }
 
-.stars-tile {
+.stars-tile,
+.answers-tile {
   width: 40%;
   float: left;
 }

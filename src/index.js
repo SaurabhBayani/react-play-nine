@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 import Header from './components/header.jsx';
 import StarsTile from './components/stars.jsx';
+import AnswersTile from './components/answers.jsx';
 
 ReactDOM.render(
   <div className='container'>
@@ -12,7 +13,7 @@ ReactDOM.render(
     <div className='clearfix'>
       <StarsTile />
       <buttonTile />
-      <answerTile />
+      <AnswersTile />
     </div>
   </div>,
   document.getElementById('root')
