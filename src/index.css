@@ -9,3 +9,9 @@ body {
   width: 40%;
   float: left;
 }
+
+.button-tile {
+  width: 20%;
+  float: left;
+  text-align: center;
+}
