@@ -21,8 +21,17 @@ body {
 }
 
 .star {
-  padding: 15px;
+  margin: 15px;
   font-size: 40px;
+}
+
+.number-div {
+  margin: 20px;
+  display: inline-block;
+  background-color: #bbb;
+  padding: 15px;
+  font-size: 20px;
+  border-radius: 50%;
   cursor: pointer;
-  border: 1px solid #cccccc;
+  border-color: #666666;
 }

@@ -7,6 +7,7 @@ import Header from './components/header.jsx';
 import StarsTile from './components/stars.jsx';
 import AnswersTile from './components/answers.jsx';
 import ButtonTile from './components/buttons.jsx';
+import Numbers from './components/number.jsx';
 
 ReactDOM.render(
   <div className='container'>
@@ -16,6 +17,7 @@ ReactDOM.render(
       <ButtonTile />
       <AnswersTile />
     </div>
+    <Numbers />
   </div>,
   document.getElementById('root')
 );
