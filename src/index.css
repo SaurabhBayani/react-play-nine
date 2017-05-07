@@ -7,17 +7,22 @@ body {
 .stars-tile {
   width: 30%;
   float: left;
+  height: 250px;
+  padding: 20px;
 }
 
 .answers-tile {
   width: 60%;
   float: left;
+  height: 250px;
 }
 
 .button-tile {
   width: 10%;
   float: left;
   text-align: center;
+  height: 250px;
+  line-height: 250px;
 }
 
 .star {
