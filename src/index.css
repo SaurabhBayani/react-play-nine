@@ -30,7 +30,8 @@ body {
   font-size: 40px;
 }
 
-.number-div {
+.number-div,
+.selected-number {
   margin: 20px;
   display: inline-block;
   background-color: #bbb;
@@ -39,4 +40,11 @@ body {
   border-radius: 50%;
   cursor: pointer;
   border-color: #666666;
+}
+
+.number-selected {
+  background-color: #fafafa;
+  color: #cccccc;
+  border: 1px solid #bbbbbb;
+  cursor: default;
 }

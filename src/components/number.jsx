@@ -7,9 +7,15 @@ class Numbers extends React.Component {
         this.numbersDom = [];
     }
     render() {
+        var classToApply;
         for (let i = 1; i <= this.numbers; i++) {
+            if(this.props.selectedNumbers.indexOf(i) >=0){
+                classToApply = 'number-div number-selected';
+            } else {
+                classToApply = 'number-div';
+            }
             this.numbersDom.push(
-                <div className='number-div' key={i}>{i}</div>
+                <div className={classToApply} key={i}>{i}</div>
             )
         }
         return (

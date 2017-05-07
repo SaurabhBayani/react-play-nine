@@ -21,4 +21,4 @@ class StarsTile extends React.Component {
     }
 }
 
-export default StarsTile
+export default StarsTile;
