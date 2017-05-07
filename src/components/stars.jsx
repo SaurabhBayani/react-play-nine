@@ -9,8 +9,9 @@ class StarsTile extends React.Component {
 
     render() {
         for(let i=0; i<this.starsCount; i++) {
+            let key = 'star-' + i;
             this.starsDom.push(
-                <span className='glyphicon glyphicon-star star' key={i}></span>
+                <span className='glyphicon glyphicon-star star' key={key}></span>
             )
         }
         return (

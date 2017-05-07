@@ -10,9 +10,16 @@ class Game extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedNumbers : [4, 6]
+            selectedNumbers: []
         }
     }
+
+    clickNumber = (number) => {
+        this.setState(
+            { selectedNumbers: this.state.selectedNumbers.concat(number) }
+        )
+    }
+
     render() {
         return (
             <div className='container'>
@@ -22,7 +29,7 @@ class Game extends React.Component {
                     <ButtonTile />
                     <AnswersTile selectedNumbers={this.state.selectedNumbers} />
                 </div>
-                <Numbers selectedNumbers={this.state.selectedNumbers} />
+                <Numbers selectedNumbers={this.state.selectedNumbers} clickNumber={this.clickNumber} />
             </div>
         )
     }

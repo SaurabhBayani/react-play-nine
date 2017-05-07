@@ -3,9 +3,10 @@ import React from 'react';
 class AnswersTile extends React.Component {
     constructor(props){
         super(props);
-        this.selectedNumbers = [];
+        this.selectedNumbersDom = [];
     }
     render() {
+        debugger;
         this.selectedNumbersDom = this.props.selectedNumbers.map(function(number, i){
             return <span className='number-div' key={i}>{number}</span>
         });

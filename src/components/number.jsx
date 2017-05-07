@@ -1,26 +1,24 @@
 import React from 'react';
 
 class Numbers extends React.Component {
-    constructor(props) {
-        super(props);
-        this.numbers = 9;
-        this.numbersDom = [];
-    }
     render() {
-        var classToApply;
-        for (let i = 1; i <= this.numbers; i++) {
-            if(this.props.selectedNumbers.indexOf(i) >=0){
+        var classToApply,
+            numbers = 9,
+            clickNumber = this.props.clickNumber,
+            numbersDom = [];
+        for (let j = 1; j <= numbers; j++) {
+            if (this.props.selectedNumbers.indexOf(j) >= 0) {
                 classToApply = 'number-div number-selected';
             } else {
                 classToApply = 'number-div';
             }
-            this.numbersDom.push(
-                <div className={classToApply} key={i}>{i}</div>
+            numbersDom.push(
+                <div className={classToApply} key={j} onClick={clickNumber.bind(null, j)}>{j}</div>
             )
         }
         return (
             <div className='well numbers-tile'>
-                {this.numbersDom}
+                {numbersDom}
             </div>
         )
     }
