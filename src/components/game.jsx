@@ -41,7 +41,7 @@ class Game extends React.Component {
                 <Header />
                 <div className='clearfix'>
                     <StarsTile starsCount={this.state.starsCount}/>
-                    <ButtonTile />
+                    <ButtonTile selectedNumbers={this.state.selectedNumbers}/>
                     <AnswersTile selectedNumbers={this.state.selectedNumbers} unSelectNumber={this.unSelectNumber} />
                 </div>
                 <Numbers selectedNumbers={this.state.selectedNumbers} selectNumber={this.selectNumber} />
