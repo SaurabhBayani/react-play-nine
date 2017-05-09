@@ -11,7 +11,9 @@ class Game extends React.Component {
         super(props);
         this.state = {
             selectedNumbers: [],
-            starsCount: Math.floor(Math.random() * 9) + 1
+            starsCount: Math.floor(Math.random() * 9) + 1,
+            answerRight: null,
+            sumOfNumbers: null
         }
     }
 
@@ -20,7 +22,8 @@ class Game extends React.Component {
         // Add new number only if new number is not already in array
         if (this.state.selectedNumbers.indexOf(number) < 0) {
             this.setState({
-                selectedNumbers: this.state.selectedNumbers.concat(number)
+                selectedNumbers: this.state.selectedNumbers.concat(number),
+                answerRight: null,
             })
         }
     }
@@ -31,8 +34,26 @@ class Game extends React.Component {
         let newNumberArray = this.state.selectedNumbers;
         newNumberArray.splice(index, 1);
         this.setState({
-            selectedNumbers: newNumberArray
+            selectedNumbers: newNumberArray,
+            answerRight: null,
         });
+    }
+
+    // function to check answer
+    checkAnswer = () => {
+        // Sum of all selected  number
+        var sumOfNumbers = this.state.selectedNumbers.reduce(function(a, b){
+            return a + b;
+        }, 0);
+        if(this.state.starsCount === sumOfNumbers) {
+            this.setState({
+                answerRight: true
+            })
+        } else {
+            this.setState({
+                answerRight: false
+            })
+        }
     }
 
     render() {
@@ -41,7 +62,7 @@ class Game extends React.Component {
                 <Header />
                 <div className='clearfix'>
                     <StarsTile starsCount={this.state.starsCount}/>
-                    <ButtonTile selectedNumbers={this.state.selectedNumbers}/>
+                    <ButtonTile selectedNumbers={this.state.selectedNumbers} checkAnswer={this.checkAnswer} answerRight={this.state.answerRight}/>
                     <AnswersTile selectedNumbers={this.state.selectedNumbers} unSelectNumber={this.unSelectNumber} />
                 </div>
                 <Numbers selectedNumbers={this.state.selectedNumbers} selectNumber={this.selectNumber} />
