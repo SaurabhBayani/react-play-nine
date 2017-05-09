@@ -5,6 +5,7 @@ import StarsTile from './stars.jsx';
 import AnswersTile from './answers.jsx';
 import ButtonTile from './buttons.jsx';
 import Numbers from './number.jsx';
+import GameStatus from './gamestatus';
 
 class Game extends React.Component {
     constructor(props) {
@@ -15,7 +16,9 @@ class Game extends React.Component {
             answerRight: null,
             sumOfNumbers: null,
             usedNumbers: [],
-            redrawAttemps: 5
+            redrawAttemps: 5,
+            gameStatus: 'You lost',
+            gemeOver: false
         }
     }
 
@@ -67,22 +70,43 @@ class Game extends React.Component {
             usedNumbers: this.state.usedNumbers.concat(this.state.selectedNumbers),
             selectedNumbers: []
         });
+        if (this.state.usedNumbers.length === 8) {
+            this.setState({
+                gameStatus: 'You Win',
+                gameOver: true
+            })
+        }
     }
 
     // function to redraw stars
     redrawStars = () => {
-        if (this.state.redrawAttemps > 0) {
+        if (this.state.redrawAttemps > 1) {
             this.setState({
                 starsCount: Math.floor(Math.random() * 9) + 1,
                 redrawAttemps: this.state.redrawAttemps - 1
+            });
+        } else {
+            this.setState({
+                redrawAttemps: this.state.redrawAttemps - 1,
+                gameStatus: 'You Lost',
+                gameOver: true
             });
         }
 
     }
 
     render() {
+        let bottomTile;
+        if (this.state.gameOver) {
+            bottomTile = <GameStatus gameStatus={this.state.gameStatus} />
+        } else {
+            bottomTile = <Numbers selectedNumbers={this.state.selectedNumbers}
+                selectNumber={this.selectNumber}
+                usedNumbers={this.state.usedNumbers}
+            />
+        }
         return (
-            <div className='container'>
+            <div className='container-fluid'>
                 <Header />
                 <div className='clearfix'>
                     <StarsTile starsCount={this.state.starsCount} />
@@ -97,10 +121,7 @@ class Game extends React.Component {
                         unSelectNumber={this.unSelectNumber}
                     />
                 </div>
-                <Numbers selectedNumbers={this.state.selectedNumbers}
-                    selectNumber={this.selectNumber}
-                    usedNumbers={this.state.usedNumbers}
-                />
+                {bottomTile}
             </div>
         )
     }
