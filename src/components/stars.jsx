@@ -1,14 +1,9 @@
 import React from 'react';
 
 class StarsTile extends React.Component {
-    constructor(props) {
-        super(props);
-        this.starsCount = props.starsCount;
-    }
-
     render() {
         let starsDom = [];
-        for(let i=0; i<this.starsCount; i++) {
+        for(let i=0; i<this.props.starsCount; i++) {
             let key = 'star-' + i;
             starsDom.push(
                 <span className='glyphicon glyphicon-star star' key={key}></span>

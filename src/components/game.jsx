@@ -13,14 +13,15 @@ class Game extends React.Component {
             selectedNumbers: [],
             starsCount: Math.floor(Math.random() * 9) + 1,
             answerRight: null,
-            sumOfNumbers: null
+            sumOfNumbers: null,
+            usedNumbers: []
         }
     }
 
     // Function to select numbers
     selectNumber = (number) => {
         // Add new number only if new number is not already in array
-        if (this.state.selectedNumbers.indexOf(number) < 0) {
+        if (this.state.selectedNumbers.indexOf(number) < 0 && this.state.usedNumbers.indexOf(number) < 0) {
             this.setState({
                 selectedNumbers: this.state.selectedNumbers.concat(number),
                 answerRight: null,
@@ -42,10 +43,10 @@ class Game extends React.Component {
     // function to check answer
     checkAnswer = () => {
         // Sum of all selected  number
-        var sumOfNumbers = this.state.selectedNumbers.reduce(function(a, b){
+        var sumOfNumbers = this.state.selectedNumbers.reduce(function (a, b) {
             return a + b;
         }, 0);
-        if(this.state.starsCount === sumOfNumbers) {
+        if (this.state.starsCount === sumOfNumbers) {
             this.setState({
                 answerRight: true
             })
@@ -56,16 +57,37 @@ class Game extends React.Component {
         }
     }
 
+    //function to accept the answer
+    acceptAnswer = () => {
+        this.setState({
+            starsCount: Math.floor(Math.random() * 9) + 1,
+            answerRight: null,
+            sumOfNumbers: null,
+            usedNumbers: this.state.usedNumbers.concat(this.state.selectedNumbers),
+            selectedNumbers: []
+        });
+        console.log(this.state.usedNumbers);
+    }
+
     render() {
         return (
             <div className='container'>
                 <Header />
                 <div className='clearfix'>
-                    <StarsTile starsCount={this.state.starsCount}/>
-                    <ButtonTile selectedNumbers={this.state.selectedNumbers} checkAnswer={this.checkAnswer} answerRight={this.state.answerRight}/>
-                    <AnswersTile selectedNumbers={this.state.selectedNumbers} unSelectNumber={this.unSelectNumber} />
+                    <StarsTile starsCount={this.state.starsCount} />
+                    <ButtonTile selectedNumbers={this.state.selectedNumbers}
+                        checkAnswer={this.checkAnswer}
+                        answerRight={this.state.answerRight}
+                        acceptAnswer={this.acceptAnswer}
+                    />
+                    <AnswersTile selectedNumbers={this.state.selectedNumbers}
+                        unSelectNumber={this.unSelectNumber}
+                    />
                 </div>
-                <Numbers selectedNumbers={this.state.selectedNumbers} selectNumber={this.selectNumber} />
+                <Numbers selectedNumbers={this.state.selectedNumbers}
+                    selectNumber={this.selectNumber}
+                    usedNumbers={this.state.usedNumbers}
+                />
             </div>
         )
     }

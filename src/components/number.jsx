@@ -11,6 +11,10 @@ class Numbers extends React.Component {
             } else {
                 classToApply = 'number-div';
             }
+            // Grrenify Used numbers
+            if(this.props.usedNumbers.indexOf(j) >= 0){
+                classToApply += " used-number";
+            }
             numbersDom.push(
                 <div className={classToApply} key={j} onClick={this.props.selectNumber.bind(null, j)}>{j}</div>
             )

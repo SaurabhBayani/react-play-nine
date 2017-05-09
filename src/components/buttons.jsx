@@ -6,9 +6,9 @@ class ButtonTile extends React.Component {
             buttonDOM;
         switch(this.props.answerRight){
             case true:
-                buttonDOM = <div className='btn btn-success btn-lg' onClick={this.props.checkAnswer}>
+                buttonDOM = <button className='btn btn-success btn-lg' onClick={this.props.acceptAnswer}>
                     <span className='glyphicon glyphicon-ok'></span>
-                    </div>
+                    </button>
                 break
             case false:
                 buttonDOM = <div className='btn btn-danger btn-lg' disabled={disabled} onClick={this.props.checkAnswer}>
