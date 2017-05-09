@@ -10,14 +10,19 @@ class Game extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedNumbers: []
+            selectedNumbers: [],
+            starsCount: Math.floor(Math.random() * 9) + 1
         }
     }
 
     clickNumber = (number) => {
-        this.setState(
-            { selectedNumbers: this.state.selectedNumbers.concat(number) }
-        )
+        // Add new number only if new number is not already in array
+        if (this.state.selectedNumbers.indexOf(number) < 0) {
+            this.setState(
+                { selectedNumbers: this.state.selectedNumbers.concat(number) }
+            )
+        }
+
     }
 
     render() {
@@ -25,7 +30,7 @@ class Game extends React.Component {
             <div className='container'>
                 <Header />
                 <div className='clearfix'>
-                    <StarsTile />
+                    <StarsTile starsCount={this.state.starsCount}/>
                     <ButtonTile />
                     <AnswersTile selectedNumbers={this.state.selectedNumbers} />
                 </div>
