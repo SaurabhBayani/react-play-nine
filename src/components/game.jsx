@@ -15,14 +15,24 @@ class Game extends React.Component {
         }
     }
 
-    clickNumber = (number) => {
+    // Function to select numbers
+    selectNumber = (number) => {
         // Add new number only if new number is not already in array
         if (this.state.selectedNumbers.indexOf(number) < 0) {
-            this.setState(
-                { selectedNumbers: this.state.selectedNumbers.concat(number) }
-            )
+            this.setState({
+                selectedNumbers: this.state.selectedNumbers.concat(number)
+            })
         }
+    }
 
+    // Function to unselect numbers
+    unSelectNumber = (number) => {
+        let index = this.state.selectedNumbers.indexOf(number);
+        let newNumberArray = this.state.selectedNumbers;
+        newNumberArray.splice(index, 1);
+        this.setState({
+            selectedNumbers: newNumberArray
+        });
     }
 
     render() {
@@ -32,9 +42,9 @@ class Game extends React.Component {
                 <div className='clearfix'>
                     <StarsTile starsCount={this.state.starsCount}/>
                     <ButtonTile />
-                    <AnswersTile selectedNumbers={this.state.selectedNumbers} />
+                    <AnswersTile selectedNumbers={this.state.selectedNumbers} unSelectNumber={this.unSelectNumber} />
                 </div>
-                <Numbers selectedNumbers={this.state.selectedNumbers} clickNumber={this.clickNumber} />
+                <Numbers selectedNumbers={this.state.selectedNumbers} selectNumber={this.selectNumber} />
             </div>
         )
     }
