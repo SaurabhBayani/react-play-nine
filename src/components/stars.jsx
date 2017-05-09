@@ -4,19 +4,19 @@ class StarsTile extends React.Component {
     constructor(props) {
         super(props);
         this.starsCount = Math.floor(Math.random() * 9) + 1;
-        this.starsDom = [];
     }
 
     render() {
+        let starsDom = [];
         for(let i=0; i<this.starsCount; i++) {
             let key = 'star-' + i;
-            this.starsDom.push(
+            starsDom.push(
                 <span className='glyphicon glyphicon-star star' key={key}></span>
             )
         }
         return (
             <div className='well stars-tile'>
-                {this.starsDom}
+                {starsDom}
             </div>
         )
     }

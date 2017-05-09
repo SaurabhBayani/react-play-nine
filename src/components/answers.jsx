@@ -6,7 +6,6 @@ class AnswersTile extends React.Component {
         this.selectedNumbersDom = [];
     }
     render() {
-        debugger;
         this.selectedNumbersDom = this.props.selectedNumbers.map(function(number, i){
             return <span className='number-div' key={i}>{number}</span>
         });
