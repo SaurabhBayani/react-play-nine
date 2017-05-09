@@ -21,6 +21,13 @@ class ButtonTile extends React.Component {
         return (
             <div className='button-tile'>
                 {buttonDOM}
+                <br />
+                <br />
+                <button className='btn btn-warning btn-xs' onClick={this.props.redrawStars}>
+                    <span className='glyphicon glyphicon-refresh'></span>
+                    &nbsp;
+                    {this.props.redrawAttemps}
+                </button>
             </div>
         )
     }

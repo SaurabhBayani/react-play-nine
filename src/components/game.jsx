@@ -14,7 +14,8 @@ class Game extends React.Component {
             starsCount: Math.floor(Math.random() * 9) + 1,
             answerRight: null,
             sumOfNumbers: null,
-            usedNumbers: []
+            usedNumbers: [],
+            redrawAttemps: 5
         }
     }
 
@@ -66,7 +67,17 @@ class Game extends React.Component {
             usedNumbers: this.state.usedNumbers.concat(this.state.selectedNumbers),
             selectedNumbers: []
         });
-        console.log(this.state.usedNumbers);
+    }
+
+    // function to redraw stars
+    redrawStars = () => {
+        if (this.state.redrawAttemps > 0) {
+            this.setState({
+                starsCount: Math.floor(Math.random() * 9) + 1,
+                redrawAttemps: this.state.redrawAttemps - 1
+            });
+        }
+
     }
 
     render() {
@@ -79,6 +90,8 @@ class Game extends React.Component {
                         checkAnswer={this.checkAnswer}
                         answerRight={this.state.answerRight}
                         acceptAnswer={this.acceptAnswer}
+                        redrawAttemps={this.state.redrawAttemps}
+                        redrawStars={this.redrawStars}
                     />
                     <AnswersTile selectedNumbers={this.state.selectedNumbers}
                         unSelectNumber={this.unSelectNumber}
